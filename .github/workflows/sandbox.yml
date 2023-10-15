@@ -17,8 +17,9 @@ jobs:
 
       - name: Create files
         run: |
+          mkdir test
           echo "Hello" > hello.txt
-          echo "world" > world.txt
+          echo "world" > test/world.txt
           mkdir ${{ env.ARTIFACT_DIR_PATH }}
           echo "log" > ${{ env.LOG_FILE_PATH }}
         env:
