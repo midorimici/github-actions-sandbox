@@ -30,7 +30,7 @@ jobs:
 
       - name: Move the file to artifact directory
         run: |
-          mv $(git ls-files --others --exclude-standard) ${{ env.ARTIFACT_DIR_PATH }}
+          git ls-files --others --exclude-standard | cpio -pvdumB ${{ env.ARTIFACT_DIR_PATH }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
