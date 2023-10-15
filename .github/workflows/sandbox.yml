@@ -8,9 +8,29 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      ARTIFACT_DIR_PATH: /tmp/artifacts
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Create a file
-        run: echo "Hello" > hello.txt
+      - name: Create files
+        run: |
+          echo "Hello" > hello.txt
+          echo "world" > world.txt
+
+      - name: List new files
+        run: git ls-files --others --exclude-standard
+
+      - name: Move the file to artifact directory
+        run: |
+          mkdir ${{ env.ARTIFACT_DIR_PATH }}
+          mv $(git ls-files --others --exclude-standard) ${{ env.ARTIFACT_DIR_PATH }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: log
+          path: ${{ env.ARTIFACT_DIR_PATH }}
+          if-no-files-found: error
