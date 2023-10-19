@@ -8,33 +8,13 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      ARTIFACT_DIR_PATH: /tmp/artifacts
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Create files
-        run: |
-          mkdir test
-          echo "Meow" > meow.txt
-          echo "world" > test/world.txt
-          mkdir ${{ env.ARTIFACT_DIR_PATH }}
-          echo "log" > ${{ env.LOG_FILE_PATH }}
-        env:
-          LOG_FILE_PATH: ${{ env.ARTIFACT_DIR_PATH }}/log
-
-      - name: List new files
-        run: git ls-files --others --exclude-standard
-
-      - name: Move the file to artifact directory
-        run: |
-          git ls-files --others --exclude-standard | cpio -pvdumB ${{ env.ARTIFACT_DIR_PATH }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/checkout@v4
         with:
-          name: log
-          path: ${{ env.ARTIFACT_DIR_PATH }}
-          if-no-files-found: error
+          fetch-depth: 3
+
+      - name: Git status
+        run: |
+          git log --oneline --graph --branches --all
+          git diff @ @~
