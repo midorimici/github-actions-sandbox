@@ -13,5 +13,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Check event
-        run: echo "${{ toJSON(github.event) }}"
+      - name: List attached labels
+        run: echo "${{ toJSON((github.event.pull_request||github.event.issue).labels) }}"
