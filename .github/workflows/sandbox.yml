@@ -14,5 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
+      - name: Variables
+        run: |
+          echo "${{ toJSON(github) }}"
+      
       - name: Release tag name
         run: echo "${{ startsWith(github.event.release.tag_name, 'release') }}"
