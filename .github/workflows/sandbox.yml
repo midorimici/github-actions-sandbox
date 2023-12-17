@@ -1,6 +1,7 @@
 on:
-  pull_request:
-  issue_comment:
+  release:
+    types:
+      - published
   workflow_dispatch:
 
 jobs:
@@ -13,5 +14,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: List attached labels
-        run: echo "${{ toJSON((github.event.pull_request||github.event.issue).labels) }}"
+      - name: Release tag name
+        run: echo "${{ startsWith(github.event.release.tag_name, 'release') }}"
