@@ -13,10 +13,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            dir-a
+            dir-b/c
       
-      - name: Variables
-        run: |
-          echo "${{ toJSON(github) }}"
-      
-      - name: Release tag name
-        run: echo "${{ startsWith(github.event.release.tag_name, 'release') }}"
+      - name: tree
+        run: tree
