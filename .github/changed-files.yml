@@ -3,6 +3,6 @@ dir-a:
 dir-b-c:
   - 'dir-b/c/**'
 dir-b-d:
-  - 'dir-b/d/**.{txt,md}'
+  - 'dir-b/d/**/*.{txt,md}'
 others:
   - '**'
