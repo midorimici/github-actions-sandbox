@@ -34,10 +34,13 @@ jobs:
 
       - name: List all changed files
         env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
           A_ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.dir-a_all_changed_files }}
           B_C_ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.dir-b-c_all_changed_files }}
           B_D_ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.dir-b-d_all_changed_files }}
         run: |
+          echo "${ALL_CHANGED_FILES}"
+          echo "---"
           echo "${A_ALL_CHANGED_FILES}"
           echo "---"
           echo "${B_C_ALL_CHANGED_FILES}"
