@@ -4,3 +4,5 @@ dir-b-c:
   - 'dir-b/c/**'
 dir-b-d:
   - 'dir-b/d/**'
+others:
+  - '**'
