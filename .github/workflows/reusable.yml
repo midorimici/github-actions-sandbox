@@ -39,6 +39,6 @@ jobs:
           B_D_ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.dir-b-d_all_changed_files }}
           OTHERS_ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.others_all_changed_files }}
         run: |
-          bash .github/script.sh "${A_ALL_CHANGED_FILES}" "${B_C_ALL_CHANGED_FILES}" "${B_D_ALL_CHANGED_FILES}"
+          bash .github/script.sh "${A_ALL_CHANGED_FILES}" "${B_C_ALL_CHANGED_FILES}" "${B_D_ALL_CHANGED_FILES}" "${{ steps.changed-files.outputs.dir-a_any_changed }}"
           echo "---"
           echo "${OTHERS_ALL_CHANGED_FILES}"
