@@ -30,10 +30,16 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v44
         with:
-          path: '.github'
+          files_yaml_from_source_file: .github/changed-files.yml
 
       - name: List all changed files
         env:
-          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+          A_ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.dir-a_all_changed_files }}
+          B_C_ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.dir-b-c_all_changed_files }}
+          B_D_ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.dir-b-d_all_changed_files }}
         run: |
-          echo "${ALL_CHANGED_FILES}"
+          echo "${A_ALL_CHANGED_FILES}"
+          echo "---"
+          echo "${B_C_ALL_CHANGED_FILES}"
+          echo "---"
+          echo "${B_D_ALL_CHANGED_FILES}"

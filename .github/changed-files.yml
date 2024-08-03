@@ -1,0 +1,6 @@
+dir-a:
+  - 'dir-a/**'
+dir-b-c:
+  - 'dir-b/c/**'
+dir-b-d:
+  - 'dir-b/d/**'
