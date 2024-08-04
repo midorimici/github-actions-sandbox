@@ -29,6 +29,7 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           files_yaml_from_source_file: .github/changed-files.yml
+          since_last_remote_commit: true
 
       - name: List all changed files
         env:
