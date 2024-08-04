@@ -18,10 +18,15 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
+      - name: Get merge commit SHA
+        id: merge-commit-sha
+        run: |
+          echo "result=$(gh api /repos/${{ github.repository }}/pulls/${{ github.event.number }} --jq '.merge_commit_sha')" >> $GITHUB_OUTPUT
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ steps.merge-commit-sha.outputs.result }}
 
       - name: Greet
         run: sh ./dir-a/script.sh ${{ inputs.greeting }} ${{ inputs.name }}
