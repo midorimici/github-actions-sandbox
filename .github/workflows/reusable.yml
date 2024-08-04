@@ -20,8 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
 
       - name: Greet
         run: sh ./dir-a/script.sh ${{ inputs.greeting }} ${{ inputs.name }}
